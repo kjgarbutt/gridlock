@@ -18,6 +18,7 @@ import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.planargraph.Node;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,6 +27,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+
 import sim.engine.SimState;
 import sim.engine.Steppable;
 import sim.field.geo.GeomVectorField;
@@ -234,24 +236,33 @@ public class Gridlock extends SimState
                 // column 'L' in data/roads_points_place.csv? Relates to TRACTTOTRA in areas.shp.
                 // this appears to be the number of agents to create for each census tract.
                 int pop = Integer.parseInt(bits[11]); // TODO: reset me if desired!
+                System.out.println("Agent TRACTTOTRA: " +pop);
                 
                 // column 'F' SCTRACTW in data/roads_points_place.csv? Relates to STFID/STFID_1 in areas.shp.
                 String workTract = bits[5];
+                System.out.println("Agent workTract (STFID): " +workTract);
                 
                 // column 'I' SCTRACTR in data/roads_points_place.csv? Relates to STFID/STFID_1 in areas.shp also.
                 String homeTract = bits[8];
+                System.out.println("Agent homeTract (STFID): " +homeTract);
                 
                 // column 'N' ID_ID data/roads_points_place.csv?? Relates to ID_ID data in roads.shp NOT areas.shp.    
                 String id_id = bits[13];
+                System.out.println("Agent ID_ID: " +id_id);
                 
                 GeomPlanarGraphEdge startingEdge = idsToEdges.get(
                     (int) Double.parseDouble(id_id));
+                System.out.println("startingEdge: " +startingEdge);
                 GeomPlanarGraphEdge goalEdge = idsToEdges.get(
                     goals[ random.nextInt(goals.length)]);
+                System.out.println("goalEdge: " +goalEdge);
+                System.out.println("goals: " +goals);
+                System.out.println("homeNode: " +goals);
+                
                 for (int i = 0; i < 1; i++)	{
                 	//pop; i++){
                     Agent a = new Agent(this, homeTract, workTract, startingEdge, goalEdge);
-
+                    System.out.println("MainAgent 'a': " +this + ", Home Tract: " +homeTract + ", Work Tract: " +workTract + ", Starting Edge: " +startingEdge + ", Goal Edge: " +goalEdge);
                     boolean successfulStart = a.start(this);
 
                     if (!successfulStart)	{
@@ -269,6 +280,7 @@ public class Gridlock extends SimState
 
             // clean up
             d.close();
+            System.out.println("Cleaning...");
 
         } catch (Exception e)
         {
