@@ -240,11 +240,11 @@ public class Gridlock extends SimState
                 
                 // column 'F' SCTRACTW in data/roads_points_place.csv? Relates to STFID/STFID_1 in areas.shp.
                 String workTract = bits[5];
-                System.out.println("Agent workTract (STFID): " +workTract);
+                System.out.println("Agent workTract (SCTRACTW): " +workTract);
                 
                 // column 'I' SCTRACTR in data/roads_points_place.csv? Relates to STFID/STFID_1 in areas.shp also.
                 String homeTract = bits[8];
-                System.out.println("Agent homeTract (STFID): " +homeTract);
+                System.out.println("Agent homeTract (SCTRACTR): " +homeTract);
                 
                 // column 'N' ID_ID data/roads_points_place.csv?? Relates to ID_ID data in roads.shp NOT areas.shp.    
                 String id_id = bits[13];
